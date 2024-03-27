@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function DetailLink() {
   let router = useRouter();
