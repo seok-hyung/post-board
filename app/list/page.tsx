@@ -20,6 +20,6 @@ const List = async () => {
 export default List;
 interface Post {
   content: string;
-  _id: any;
+  _id: string;
   title: string;
 }
