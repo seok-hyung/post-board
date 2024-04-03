@@ -1,5 +1,4 @@
 'use client';
-import { ObjectId } from 'mongodb';
 import Link from 'next/link';
 
 const ListItem = ({ result }: ListItemProps) => {
@@ -27,25 +26,26 @@ const ListItem = ({ result }: ListItemProps) => {
           {/* form 태그 말고도 서버에 get,post 요청을 보낼 수 있는 기능 AJAX */}
           {/* form으로 요청시 항상 새로고침 but Ajax로 요청시 새로고침 X */}
           <span
-            onClick={() => {
+            onClick={(e: React.MouseEvent<HTMLElement>) => {
               fetch('/api/post/delete', {
-                method: 'DELETE',
-                body: data._id,
+                method: 'POST', // Method DELETE => POST 로 바꾸고 에러해결
+
+                body: JSON.stringify({ postId: data._id }),
+                // body: data._id,
               })
-                .then((r) => {
-                  if (r.status === 200) {
-                    return r.json();
-                  } else {
-                    //서버가 에러코드전송시 실행할코드
-                  }
-                })
-                .then((result) => {
+                .then((r) => r.json())
+                .then((res) => {
                   //성공시 실행할코드
-                  console.log(result);
+                  const target = e.target as HTMLElement; // HTMLElement로 타입 단언
+                  target.parentElement!.style.opacity = '0';
+                  setTimeout(() => {
+                    target.parentElement!.style.display = 'none';
+                  }, 1000);
+                  console.log('ListItem fetch 정상작동', res);
                 })
                 .catch((error) => {
                   //인터넷문제 등으로 실패시 실행할코드
-                  console.log(error);
+                  console.log('에러는 :', error);
                 });
             }}
           >
