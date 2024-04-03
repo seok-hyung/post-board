@@ -28,10 +28,11 @@ const ListItem = ({ result }: ListItemProps) => {
           <span
             onClick={(e: React.MouseEvent<HTMLElement>) => {
               fetch('/api/post/delete', {
-                method: 'POST', // Method DELETE => POST 로 바꾸고 에러해결
-
+                method: 'DELETE', // Method DELETE => POST 로 바꾸고 에러해결
+                headers: {
+                  'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({ postId: data._id }),
-                // body: data._id,
               })
                 .then((r) => r.json())
                 .then((res) => {
