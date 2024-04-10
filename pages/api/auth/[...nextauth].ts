@@ -26,7 +26,7 @@ export const authOptions: any = {
       //2. 로그인요청시 실행되는코드
       //직접 DB에서 아이디,비번 비교하고
       //아이디,비번 맞으면 return 결과, 틀리면 return null 해야함
-      async authorize(credentials, req): Promise<any> {
+      async authorize(credentials): Promise<any> {
         if (!credentials) {
           return null;
         }
