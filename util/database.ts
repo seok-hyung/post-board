@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 const url =
-  'mongodb+srv://admin:546871@cluster0.2oxof.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+  'mongodb+srv://admin:546871@cluster0.2oxof.mongodb.net/board?retryWrites=true&w=majority&appName=Cluster0';
 const options: any = { useNewUrlParser: true, useUnifiedTopology: true };
 let connectDB: Promise<MongoClient>;
 
