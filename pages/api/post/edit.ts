@@ -1,7 +1,7 @@
 import { connectDB } from '@/util/database';
 import { ObjectId } from 'mongodb';
-
-const handler = async (req: any, res: any) => {
+import type { NextApiRequest, NextApiResponse } from 'next';
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     // req.body가 null이거나 undefined일 경우를 검사
     if (!req.body || !req.body.title || !req.body.content || !req.body._id) {
@@ -11,7 +11,7 @@ const handler = async (req: any, res: any) => {
 
     let newPost = { title: req.body.title, content: req.body.content };
     const db = (await connectDB).db('board');
-    let result = await db
+    await db
       .collection('post')
       .updateOne({ _id: new ObjectId(req.body._id) }, { $set: newPost });
 
