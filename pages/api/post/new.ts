@@ -1,6 +1,13 @@
 import { connectDB } from '@/util/database';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../auth/[...nextauth]';
+import type { NextApiRequest, NextApiResponse } from 'next';
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  let session = await getServerSession(req, res, authOptions);
+  if (session) {
+    req.body.author = session?.user?.email;
+  }
 
-const handler = async (req: any, res: any) => {
   if (req.method === 'POST') {
     if (req.body.title === '') {
       return res.status(400).json('제목은 빈칸일 수 없습니다.');
