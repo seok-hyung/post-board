@@ -11,8 +11,8 @@ interface Credentials {
 export const authOptions: any = {
   providers: [
     GithubProvider({
-      clientId: 'cef3d0f922c7b448f709',
-      clientSecret: 'f5e96b8d8470cf1cb0307c64cf69c4050ea947c3',
+      clientId: process.env.GITHUB_CLIENT_ID || 'default_client_id',
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || 'default_client_secret',
     }),
 
     CredentialsProvider({
@@ -71,7 +71,7 @@ export const authOptions: any = {
     },
   },
 
-  secret: '1q2w3e4r',
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(connectDB),
 };
 
