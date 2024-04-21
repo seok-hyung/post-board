@@ -13,7 +13,7 @@ type sessionType = {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const commentReq = JSON.parse(req.body);
   //   console.log(commentReq);
-  const session = await getServerSession(req, res, authOptions);
+  const session: sessionType | null = await getServerSession(req, res, authOptions);
 
   if (req.method === 'POST' && session) {
     let commentObj = {
