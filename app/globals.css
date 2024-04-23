@@ -59,3 +59,11 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.dark-mode .navbar {
+  background-color: #222;
+}
+
+.dark-mode .navbar a {
+  color: white;
+}
